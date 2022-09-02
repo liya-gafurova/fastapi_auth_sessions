@@ -1,4 +1,5 @@
 from typing import Optional
+from uuid import UUID
 
 from pydantic import BaseModel
 from pydantic.schema import datetime, date
@@ -12,6 +13,10 @@ class PostCreate(BaseModel):
 class PostDB(PostCreate):
     created: date
     id: str
+    creator_id: UUID
+
+    class Config:
+        orm_mode = True
 
 
 class PostUpdate(BaseModel):
